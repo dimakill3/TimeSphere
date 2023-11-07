@@ -9,21 +9,22 @@ namespace Game
     {
         public event Action<IPoolItem> PoolItemDestroyed;
         
-        [SerializeField] private Rigidbody2D _rigidbody2D;
-        [SerializeField] private LayerMask _destroyLayer;
+        [SerializeField] private Rigidbody2D ballRigidbody2D;
+        [SerializeField] private LayerMask destroyLayer;
 
         public void ApplyImpulse(Vector3 direction, float force) => 
-            _rigidbody2D.AddForce(direction * force, ForceMode2D.Impulse);
+            ballRigidbody2D.AddForce(direction * force, ForceMode2D.Impulse);
 
         public void Slow(float slowModifier)
         {
-            _rigidbody2D.velocity /= slowModifier * 0.5f;
-            _rigidbody2D.gravityScale /= slowModifier;
+            ballRigidbody2D.gravityScale /= slowModifier;
+            ballRigidbody2D.velocity -= ballRigidbody2D.velocity.normalized * slowModifier;
         }
 
-        public void Unslow()
+        public void Unslow(float slowModifier)
         {
-            _rigidbody2D.gravityScale = 1;
+            ballRigidbody2D.gravityScale *= slowModifier;
+            ballRigidbody2D.velocity += ballRigidbody2D.velocity.normalized * slowModifier;
         }
 
         public void Destroy() => 
@@ -31,7 +32,7 @@ namespace Game
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_destroyLayer != (_destroyLayer.value | 1 << other.gameObject.layer))
+            if (destroyLayer != (destroyLayer.value | 1 << other.gameObject.layer))
                 return;
 
             Destroy();

@@ -19,7 +19,7 @@ namespace Game
             ISlowableObject slowableObject;
             
             if (other.TryGetComponent<ISlowableObject>(out slowableObject))
-                slowableObject.Unslow();
+                slowableObject.Unslow(slowModifier);
         }
     }
 }

@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8201641cc9f419a994c3316d377eae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody2D: {fileID: 1818676752240100380}
-  _destroyLayer:
+  ballRigidbody2D: {fileID: 1818676752240100380}
+  destroyLayer:
     serializedVersion: 2
     m_Bits: 1024
