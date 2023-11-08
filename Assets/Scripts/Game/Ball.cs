@@ -30,7 +30,7 @@ namespace Game
         public void Unslow()
         {
             ballRigidbody2D.gravityScale = 1;
-            ballRigidbody2D.velocity = ballRigidbody2D.velocity.normalized * ballRigidbody2D.velocity.magnitude * _appliedSlowModifier;
+            ballRigidbody2D.velocity *= _appliedSlowModifier;
         }
 
         public void Destroy() => 
