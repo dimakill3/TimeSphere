@@ -454,7 +454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6641891619661831945, guid: a23702decc59731449d458f9077a6834, type: 3}
       propertyPath: fireForce
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6641891619661831945, guid: a23702decc59731449d458f9077a6834, type: 3}
       propertyPath: ballGravityScale
@@ -667,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6641891619661831945, guid: a23702decc59731449d458f9077a6834, type: 3}
       propertyPath: fireForce
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6641891619661831945, guid: a23702decc59731449d458f9077a6834, type: 3}
       propertyPath: ballGravityScale

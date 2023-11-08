@@ -13,6 +13,7 @@ namespace Game
         [SerializeField] private LayerMask destroyLayer;
 
         private Vector2 _initialVelocity;
+        private float _enterVelocityMagnitude;
         private bool _isSlowed;
         
         public void ApplyImpulse(Vector3 direction, float force) => 
@@ -20,14 +21,17 @@ namespace Game
 
         public void Slow(float slowModifier)
         {
-            ballRigidbody2D.gravityScale = 1f / (slowModifier * slowModifier - 1);
+            _enterVelocityMagnitude = ballRigidbody2D.velocity.magnitude;
+            float gravityModifier = slowModifier * slowModifier;
+            
+            ballRigidbody2D.gravityScale = 1 / gravityModifier;
             ballRigidbody2D.velocity /= slowModifier;
         }
 
-        public void Unslow(float slowModifier)
+        public void Unslow()
         {
             ballRigidbody2D.gravityScale = 1;
-            ballRigidbody2D.AddForce(ballRigidbody2D.velocity.normalized * slowModifier, ForceMode2D.Impulse);
+            ballRigidbody2D.velocity = ballRigidbody2D.velocity.normalized * _enterVelocityMagnitude;
         }
 
         public void Destroy() => 

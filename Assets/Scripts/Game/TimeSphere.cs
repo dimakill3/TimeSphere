@@ -4,6 +4,7 @@ namespace Game
 {
     public class TimeSphere : MonoBehaviour
     {
+        [Range(1, 10)]
         [SerializeField] private float slowModifier = 10;
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -19,7 +20,7 @@ namespace Game
             ISlowableObject slowableObject;
             
             if (other.TryGetComponent<ISlowableObject>(out slowableObject))
-                slowableObject.Unslow(slowModifier);
+                slowableObject.Unslow();
         }
     }
 }
